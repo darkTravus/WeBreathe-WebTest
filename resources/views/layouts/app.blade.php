@@ -11,7 +11,7 @@
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="{{ route('home') }}">
                 <img src="https://cdn.pixabay.com/photo/2023/04/04/15/11/logo-7899578_1280.png" alt="" width="30" height="24">
                 CaptionMe
             </a>
@@ -21,7 +21,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        <a class="nav-link active" aria-current="page" href="{{ route('home') }}">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Features</a>

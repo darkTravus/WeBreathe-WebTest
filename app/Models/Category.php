@@ -5,18 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Module extends Model
+class Category extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'name',
-        'description',
-        'actual_status',
-    ];
+        'name',]
+        ;
 
-    public function historyModule()
+    public function entities()
     {
-        return $this->hasMany(HistoryModule::class);
+        return $this->hasMany(Entity::class);
     }
 }
