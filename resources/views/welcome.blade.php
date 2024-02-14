@@ -9,6 +9,7 @@
                 <a href="#" class="btn btn-warning">Modifier un Module</a>
                 <a href="#" class="btn btn-danger">Supprimer un Module</a>
             </div>
+            <h1>CATEGORIES</h1>
             <div class="row">
                 @foreach($categories as $category)
                 <div class="col-md-3 mb-3">
