@@ -1,6 +1,6 @@
 <p align="center"><a href="https://github.com/darkTravus/WeBreathe-WebTest.git" target="_blank"><img src="https://cdn.pixabay.com/photo/2023/04/04/15/11/logo-7899578_1280.png" width="400" alt="Laravel Logo"></a></p>
 
-<h1 align="center" style="color: black;">CaptionMe</h1>
+<h1 align="center"><a style="color: black;" href="https://github.com/darkTravus/WeBreathe-WebTest.git">CaptionMe</a></h1>
 
 
 

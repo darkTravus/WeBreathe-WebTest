@@ -11,6 +11,9 @@
 >    B -- Données --> A
 > ```
 
+## SOURCE
+Le projet est disponible sur mon [GitHub](https://github.com/darkTravus) depuis le lien suivant [https://github.com/darkTravus/WeBreathe-WebTest.git](https://github.com/darkTravus/WeBreathe-WebTest.git) 🙂.
+
 ## Introduction
 L'application de suivi de modules permet de surveiller en temps réel diverses métriques de différents modules. Ces métriques comprennent des données telles que la température, le nombre de passagers, la distance parcourue, etc.
 
