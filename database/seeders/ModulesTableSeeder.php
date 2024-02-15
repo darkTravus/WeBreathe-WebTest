@@ -17,11 +17,11 @@ class ModulesTableSeeder extends Seeder
         $entities = Entity::all();
 
         for ($i = 0; $i < 10; $i++) {
-            $randomEntity = $entities->random(); // Choisir une entité au hasard
+            $randomEntity = $entities->random(); // Choose a random entity
 
             Module::create([
                 'name' => 'Module ' . ($i + 1),
-                'entity_id' => $randomEntity->id, // Utiliser l'ID de l'entité choisie au hasard
+                'entity_id' => $randomEntity->id, // Use de ID of the randomed entity 
                 'actual_status' => 'Operationaly',
                 'description' => 'Description for Module ' . ($i + 1),
             ]);

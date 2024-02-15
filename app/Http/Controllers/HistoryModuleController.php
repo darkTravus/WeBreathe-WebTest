@@ -41,14 +41,14 @@ class HistoryModuleController extends Controller
         }
 
         if ($timeFilter) {
-            // Convertir la chaîne de temps en objet DateTime pour obtenir l'heure et les minutes
+            // Convert the string in DateTime object to get the hour and minute
             $time = \DateTime::createFromFormat('H:i', $timeFilter);
 
-            // Créer les bornes inférieure et supérieure
+            // Create the lower and upper bounds
             $lowerBound = $time->format('H:i:00');
             $upperBound = $time->add(new \DateInterval('PT1H'))->format('H:i:00');
 
-            // Filtrer les données d'historique du module dans l'intervalle donné
+            // Filter module history data within the given interval
             $query->whereTime('created_at', '>=', $lowerBound)
                 ->whereTime('created_at', '<', $upperBound);
         }

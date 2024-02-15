@@ -21,7 +21,7 @@ return new class extends Migration
             $table->float('alighting_passenger_count')->nullable();
             $table->timestamps();
         
-            // Clé étrangère vers la table modules
+            // Foreign key
             $table->foreign('module_id')->references('id')->on('modules')->onDelete('cascade');
         });
         

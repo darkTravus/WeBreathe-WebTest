@@ -24,7 +24,7 @@ function showIssuesToast(message) {
 // Function to detect module issues
 function detectModuleIssues() {
     $.ajax({
-        url: '/get-modules-issues', // Make sure the URL matches your route
+        url: '/get-modules-issues',
         method: 'GET',
         success: function(response) {
             if (response.length > 0) {
@@ -32,7 +32,6 @@ function detectModuleIssues() {
                     return module.name;
                 }).join(', ');
 
-                // Show a success notification with the names of the non-operational modules
                 showIssuesToast('<h5>Dysfonctionnements détectés</h5><span>Veuillez vérifier les modules suivants : <br>' + moduleNames + '</span>');
             }
         },

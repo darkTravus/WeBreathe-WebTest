@@ -10,14 +10,6 @@ use App\Models\Entity;
 class ModuleController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
      * Show the form for creating a new resource.
      */
     public function create()
@@ -39,14 +31,6 @@ class ModuleController extends Controller
         ])->save();
         
         return redirect()->route('modules.create')->with('success', 'Module ajouté avec succès !');
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
     }
 
     /**

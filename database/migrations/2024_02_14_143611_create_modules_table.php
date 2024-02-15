@@ -19,7 +19,7 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->timestamps();
 
-            // Clé étrangère vers la table entities
+            // Foreign key
             $table->foreign('entity_id')->references('id')->on('entities')->onDelete('cascade');
         });
         

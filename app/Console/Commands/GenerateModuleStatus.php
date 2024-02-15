@@ -26,15 +26,15 @@ class GenerateModuleStatus extends Command
      */
     public function handle()
     {
-        // Récupérer tous les modules
+        // Retrieve all modules
         $modules = Module::all();
 
-        // Parcourir chaque module et mettre à jour son état de manière aléatoire
+        // through each module and update its state randomly
         foreach ($modules as $module) {
             // Générez aléatoirement un nouvel état
             $randomStatus = collect(['Operationaly', 'Faulty', 'Repair'])->random();
 
-            // Mettez à jour l'état du module
+            // Update the module state
             $module->actual_status = $randomStatus;
             $module->save();
         }
