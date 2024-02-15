@@ -30,26 +30,28 @@ class GenerateModuleHistory extends Command
      */
     public function handle()
     {
-        // Récupérer tous les modules
+        // Retrieve all modules
         $modules = Module::all();
 
-        // Pour chaque module, générer des données d'historique aléatoires et les enregistrer
+        // For each operational module, generate random history data and save it
         foreach ($modules as $module) {
-            $temperature_value = mt_rand(0, 50); // Générer une température aléatoire entre 0 et 50 C
-            $total_passenger_count = mt_rand(0, 100); // Générer un nombre de passagers aléatoire entre 0 et 100
-            $distance_traveled = mt_rand(0, 5); // Générer une distance parcourue aléatoire entre 0 et 5 Km
-            $boarding_passenger_count = mt_rand(0, 30); // Générer un nombre de passagers montants aléatoire entre 0 et 200
-            $alighting_passenger_count = mt_rand(0, 30); // Générer un nombre de passagers descendants aléatoire entre 0 et 200
-
-            // Enregistrer les données d'historique dans la base de données
-            HistoryModule::create([
-                'module_id' => $module->id,
-                'temperature_value' => $temperature_value,
-                'total_passenger_count' => $total_passenger_count,
-                'distance_traveled' => $distance_traveled,
-                'boarding_passenger_count' => $boarding_passenger_count,
-                'alighting_passenger_count' => $alighting_passenger_count,
-            ]);
+            if($module->status == 'Operationaly') {
+                $temperature_value = mt_rand(0, 50); // Generate a random temperature between 0 and 50 C
+                $total_passenger_count = mt_rand(0, 100); // Generate a random number of passengers between 0 and 100
+                $distance_traveled = mt_rand(0, 5); // Generate a random distance traveled between 0 and 5 Km
+                $boarding_passenger_count = mt_rand(0, 30); // Generate a random number of boarding passengers between 0 and 30
+                $alighting_passenger_count = mt_rand(0, 30); // Generate a random number of alighting passengers between 0 and 30
+    
+                // Save history data to the database
+                HistoryModule::create([
+                    'module_id' => $module->id,
+                    'temperature_value' => $temperature_value,
+                    'total_passenger_count' => $total_passenger_count,
+                    'distance_traveled' => $distance_traveled,
+                    'boarding_passenger_count' => $boarding_passenger_count,
+                    'alighting_passenger_count' => $alighting_passenger_count,
+                ]);
+            }
         }
 
         $this->info('Module history generated successfully.');
