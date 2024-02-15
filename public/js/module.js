@@ -1,5 +1,4 @@
 //module.js
-
 $(document).ready(function() {
     // Function to fetch and update module status
     function fetchModuleStatus(moduleId) {
@@ -85,7 +84,7 @@ $(document).ready(function() {
                 label: 'Temperature',
                 backgroundColor: 'rgba(255, 99, 132, 0.2)',
                 borderColor: 'rgba(255, 99, 132, 1)',
-                borderWidth: 1
+                borderWidth: 2
             }]
         },
         options: {
@@ -105,12 +104,12 @@ $(document).ready(function() {
                 label: 'Passengers Boarded',
                 backgroundColor: 'rgba(54, 162, 235, 0.2)',
                 borderColor: 'rgba(54, 162, 235, 1)',
-                borderWidth: 1
+                borderWidth: 2
             }, {
                 label: 'Passengers Alighted',
                 backgroundColor: 'rgba(255, 206, 86, 0.2)',
                 borderColor: 'rgba(255, 206, 86, 1)',
-                borderWidth: 1
+                borderWidth: 2
             }]
         },
         options: {
@@ -130,7 +129,7 @@ $(document).ready(function() {
                     label: 'Total Passengers',
                     backgroundColor: 'rgba(255, 99, 132, 0.2)',
                     borderColor: 'rgba(255, 99, 132, 1)',
-                    borderWidth: 1,
+                    borderWidth: 2,
             },]
         },
         options: {
@@ -150,7 +149,7 @@ $(document).ready(function() {
                 label: 'Distance Covered',
                 backgroundColor: 'rgba(153, 102, 255, 0.2)',
                 borderColor: 'rgba(153, 102, 255, 1)',
-                borderWidth: 1
+                borderWidth: 2
             }]
         },
         options: {
@@ -170,61 +169,121 @@ $(document).ready(function() {
         fetchModuleHistory(moduleId, currentDate, currentTime);
     }, 30000);
 
-    // Function to update charts with new data
+    // Function to update charts with new data and summary table
     function updateChart(data) {
         // Update temperature chart
         var temperatures = [];
         var timestamps = [];
+        var boardedPassengers = [];
+        var alightedPassengers = [];
+        var totalPassengers = [];
+        var distances = [];
+
         data.forEach(function(entry) {
+            // Update temperature chart data
             temperatures.push(entry.temperature_value);
             var formattedTimestamp = new Date(entry.created_at).toISOString().slice(11, 19);
             timestamps.push(formattedTimestamp);
-        });
-        temperatureChart.data.labels = timestamps;
-        temperatureChart.data.datasets[0].data = temperatures;
-        temperatureChart.update();
 
-        // Update boarded and alighted passengers chart
-        var boardedPassengers = [];
-        var alightedPassengers = [];
-        data.forEach(function(entry) {
+            // Update passenger data for summary table
             boardedPassengers.push(entry.boarding_passenger_count);
             alightedPassengers.push(entry.alighting_passenger_count);
+            totalPassengers.push(entry.total_passenger_count);
+
+            // Update distance data for summary table
+            distances.push(entry.distance_traveled);
         });
+
+        // Update temperature chart
+        temperatureChart.data.labels = timestamps;
+        temperatureChart.data.datasets[0].data = temperatures;
+
+        // Update passenger chart
         passengerChart.data.labels = timestamps;
         passengerChart.data.datasets[0].data = boardedPassengers;
         passengerChart.data.datasets[1].data = alightedPassengers;
-        passengerChart.update();
 
         // Update total passengers chart
-        var totalPassengers = [];
-        data.forEach(function(entry) {
-            totalPassengers.push(entry.total_passenger_count);
-        });
         totalPassengerChart.data.labels = timestamps;
         totalPassengerChart.data.datasets[0].data = totalPassengers;
-        totalPassengerChart.update();
 
-        // Update distance traveled chart
-        var distances = [];
-        data.forEach(function(entry) {
-            distances.push(entry.distance_traveled);
-        });
+        // Update distance chart
         distanceChart.data.labels = timestamps;
         distanceChart.data.datasets[0].data = distances;
+
+        // Update all charts
+        temperatureChart.update();
+        passengerChart.update();
+        totalPassengerChart.update();
         distanceChart.update();
+
+        // Update summary table
+        updateSummaryTable(temperatures, boardedPassengers, alightedPassengers, totalPassengers, distances);
     }
+
+    // Function to update summary table
+    function updateSummaryTable(temperatures, boardedPassengers, alightedPassengers, totalPassengers, distances) {
+        // Calculate average temperature
+        var sumTemperature = temperatures.reduce((acc, curr) => acc + curr, 0);
+        var averageTemperature = (sumTemperature / temperatures.length).toFixed(2);
+        $('#averageTemperature').text(averageTemperature);
+
+        // Calculate average boarded passengers
+        var sumBoardedPassengers = boardedPassengers.reduce((acc, curr) => acc + curr, 0);
+        var averageBoardedPassengers = (sumBoardedPassengers / boardedPassengers.length).toFixed(2);
+        $('#averagePassenger').text(averageBoardedPassengers);
+
+        // Calculate max and min boarded passengers
+        var maxBoardedPassengers = Math.max(...boardedPassengers);
+        var minBoardedPassengers = Math.min(...boardedPassengers);
+        $('#maxPassenger').text(maxBoardedPassengers);
+        $('#minPassenger').text(minBoardedPassengers);
+
+        // Calculate total passengers
+        var sumTotalPassengers = totalPassengers.reduce((acc, curr) => acc + curr, 0);
+        $('#totalPassenger').text(sumTotalPassengers);
+
+        // Calculate total distance traveled
+        var sumDistances = distances.reduce((acc, curr) => acc + curr, 0);
+        $('#totalDistance').text(sumDistances);
+    }
+
 
     // Event handler for date filter change
     $('#dateFilter').on('change', function() {
         currentDate = $(this).val();
         fetchModuleHistory(moduleId, currentDate, currentTime);
+        updateSummaryTitle(currentDate, currentTime);
     });
 
     // Event handler for time filter change
     $('#timeFilter').on('change', function() {
         currentTime = $(this).val();
         fetchModuleHistory(moduleId, currentDate, currentTime);
+        updateSummaryTitle(currentDate, currentTime);
     });
 
 });
+
+// Function to update the summary title based on date and time filters
+function updateSummaryTitle(date, time) {
+    var formattedDate = formatDate(date);
+    var formattedTime = formatTime(time);
+    var summaryTitle = `Récapitulatif du ${formattedDate} de ${formattedTime[0]} à ${formattedTime[1]}`;
+    $('#table-title').text(summaryTitle);
+}
+
+// Function to format date as YYYY/MM/DD
+function formatDate(date) {
+    var parts = date.split('-');
+    return parts[2] + '/' + parts[1] + '/' + parts[0];
+}
+
+// Function to format time as HH:MM
+function formatTime(time) {
+    var parts = time.split(':');
+    var hours = parseInt(parts[0]);
+    var minutes = parseInt(parts[1]);
+    var endTime = (hours === 23 && minutes === 59) ? '00:00' : (hours + 1) + ':' + parts[1];
+    return [time, endTime];
+}
