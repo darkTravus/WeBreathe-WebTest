@@ -11,7 +11,6 @@ class HistoryModule extends Model
 
     protected $fillable = [
         'module_id',
-        'entity_id',
         'temperature_value',
         'total_passenger_count',
         'distance_traveled',
@@ -22,9 +21,5 @@ class HistoryModule extends Model
     public function module()
     {
         return $this->belongsTo(Module::class);
-    }
-    public function entity()
-    {
-        return $this->belongsTo(Entity::class);
     }
 }

@@ -11,6 +11,7 @@ class Module extends Model
 
     protected $fillable = [
         'name',
+        'entity_id',
         'description',
         'actual_status',
     ];
@@ -18,5 +19,10 @@ class Module extends Model
     public function historyModule()
     {
         return $this->hasMany(HistoryModule::class);
+    }
+
+    public function entity()
+    {
+        return $this->belongsTo(Entity::class);
     }
 }

@@ -13,9 +13,9 @@ class Entity extends Model
         'category_id',
     ];
 
-    public function historyModule()
+    public function module()
     {
-        return $this->hasMany(HistoryModule::class);
+        return $this->hasMany(Module::class);
     }
 
     public function category()
