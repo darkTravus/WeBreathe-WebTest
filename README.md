@@ -22,7 +22,7 @@
    ```
    Crée les différentes tables de la BDD.
    > **NOTE**
-   > Assurez-vous que la configuration de la base de données dans le fichier `.env` est correcte, en particulier la base de données nommée [webreathe_modules](./.env).
+   > Assurez-vous que la configuration de la base de données dans le fichier `.env` est correcte, en particulier la base de données nommée [caption_me](./.env).
 ---
 3. **Remplir les différentes tables**
    ```bash
