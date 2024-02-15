@@ -47,7 +47,7 @@ $(document).ready(function() {
     // Call the function to fetch initial data when the page loads
     fetchModuleStatus(moduleId);
 
-    // Update data every minute
+    // Update moodule data every minute
     setInterval(function() {
         fetchModuleStatus(moduleId);
     }, 60000);

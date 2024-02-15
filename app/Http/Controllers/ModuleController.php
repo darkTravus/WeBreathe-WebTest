@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreateModuleRequest;
 use Illuminate\Http\Request;
 use App\Models\Module;
+use App\Models\Entity;
 
 class ModuleController extends Controller
 {
@@ -21,7 +22,8 @@ class ModuleController extends Controller
      */
     public function create()
     {
-        return view('modules.create');
+        $entities = Entity::all();
+        return view('modules.create', compact('entities'));
     }
 
     /**
@@ -32,6 +34,7 @@ class ModuleController extends Controller
         Module::create([
             'name' => $request->name,
             'description' => $request->description,
+            'entity_id' => $request->entity_id,
 
         ])->save();
         
@@ -69,19 +72,32 @@ class ModuleController extends Controller
     {
         //
     }
+
     /**
      * Get the status of the specified module.
      */
     public function getModuleStatus($moduleId)
-{
-    $module = Module::with('entity')->findOrFail($moduleId);
+    {
+        $module = Module::with('entity')->findOrFail($moduleId);
 
-    return response()->json([
-        'status' => $module->actual_status,
-        'entity' => $module->entity->name,
-        'description' => $module->description,
-        'updated_at' => $module->updated_at,
-    ]);
-}
+        return response()->json([
+            'name' => $module->name,
+            'status' => $module->actual_status,
+            'entity' => $module->entity->name,
+            'description' => $module->description,
+            'updated_at' => $module->updated_at,
+        ]);
+    }
+
+    /**
+     * Get the issues of the all modules.
+     */
+    public function getModuleIssues()
+    {
+        $modules = Module::where('actual_status', '!=', 'Operationaly')->get();
+
+        return response()->json($modules);
+    }
+
 
 }

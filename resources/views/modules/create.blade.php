@@ -19,6 +19,14 @@
                         </div>
 
                         <div class="mb-3">
+                            <select name="entity_id" class="form-control">
+                                @foreach($entities as $entity)
+                                    <option value="{{ $entity->id }}">{{ $entity->name }}</option>
+                                @endforeach
+                            </select>   
+                        </div>                     
+
+                        <div class="mb-3">
                             <label for="description" class="form-label">Description du Module</label>
                             <textarea class="form-control @error('description') is-invalid @enderror" id="description" name="description">{{ old('description') }}</textarea>
                         </div>

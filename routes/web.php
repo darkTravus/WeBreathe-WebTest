@@ -25,6 +25,9 @@ Route::get('/modules/{id}', [HistoryModuleController::class, 'show'])->name('mod
 // Route pour obtenir le statut d'un module
 Route::get('/get-module-status/{moduleId}', [ModuleController::class, 'getModuleStatus'])->name('modules.status');
 
+// Route pour obtenir le statut des modules
+Route::get('/get-modules-issues', [ModuleController::class, 'getModuleIssues'])->name('modules.issues');
+
 // Route pour récupérer l'historique d'un module avec filtres de date et d'heure
 Route::get('/get-module-history/{moduleId}', [HistoryModuleController::class, 'getHistoryWithFilters'])->name('modules.history.filters');
 

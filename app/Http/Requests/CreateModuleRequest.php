@@ -23,6 +23,8 @@ class CreateModuleRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:255',
+            'entity_id' => 'required|exists:entities,id',
+            'description' => 'nullable|string',
         ];
     }
 

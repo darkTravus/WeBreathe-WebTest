@@ -18,8 +18,8 @@
         <div class="col-md-8">
             <div class="d-flex justify-content-between mb-3">
                 <a href="{{ route('modules.create') }}" class="btn btn-primary">Ajouter un Module</a>
-                <a href="#" class="btn btn-warning">Modifier un Module</a>
-                <a href="#" class="btn btn-danger">Supprimer un Module</a>
+                <a href="#" class="btn btn-warning disabled">Modifier un Module</a>
+                <a href="#" class="btn btn-danger disabled">Supprimer un Module</a>
             </div>
             <h1 class="d-flex justify-content-center">MODULES</h1>
             <div class="row">
