@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ModuleController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\HistoryModuleController;
+use App\Http\Controllers\InfoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,6 +19,10 @@ use App\Http\Controllers\HistoryModuleController;
 
 // Home route 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+
+// Info route
+Route::get('/info', [InfoController::class, 'show'])->name('info');
+
 
 // Show graphs for a specific module
 Route::get('/modules/{id}', [HistoryModuleController::class, 'show'])->name('modules.graphs');
