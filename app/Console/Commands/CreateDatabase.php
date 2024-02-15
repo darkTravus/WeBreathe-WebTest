@@ -13,7 +13,7 @@ class CreateDatabase extends Command
 
     public function handle()
     {
-        $databaseName = 'caption_me';
+        $databaseName = 'captionme';
         $charset = 'utf8mb4';
         $collation = 'utf8mb4_unicode_ci';
 
