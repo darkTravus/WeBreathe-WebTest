@@ -17,7 +17,13 @@ function showIssuesToast(message) {
 
     // Show all notifications
     $('.toast').each(function () { 
-        $(this).toast('show')
+        $(this).toast('show');
+
+        // Add event listener to close button
+        $(this).find('.btn-close').on('click', function() {
+            // Remove the parent element (the whole notification) from the DOM
+            $(this).closest('.toast').remove();
+        });
    });
 }
 
