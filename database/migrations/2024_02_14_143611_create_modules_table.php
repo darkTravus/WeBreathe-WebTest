@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->unsignedBigInteger('entity_id');
-            $table->enum('actual_status', ['Operationaly','Faulty','Repair'])->default('Operationaly');
+            $table->enum('actual_status', ['Operationally','Faulty','Repair'])->default('Operationally');
             $table->text('description')->nullable();
             $table->timestamps();
 

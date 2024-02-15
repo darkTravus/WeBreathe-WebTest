@@ -32,7 +32,7 @@ class GenerateModuleStatus extends Command
         // through each module and update its state randomly
         foreach ($modules as $module) {
             // Générez aléatoirement un nouvel état
-            $randomStatus = collect(['Operationaly', 'Faulty', 'Repair'])->random();
+            $randomStatus = collect(['Operationally', 'Faulty', 'Repair'])->random();
 
             // Update the module state
             $module->actual_status = $randomStatus;

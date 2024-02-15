@@ -34,7 +34,7 @@ class GenerateModuleHistory extends Command
 
         // For each operational module, generate random history data and save it
         foreach ($modules as $module) {
-            if($module->actual_status == 'Operationaly') {
+            if($module->actual_status == 'Operationally') {
                 $temperature_value = mt_rand(0, 50); // Generate a random temperature between 0 and 50 C
                 $total_passenger_count = mt_rand(0, 100); // Generate a random number of passengers between 0 and 100
                 $distance_traveled = mt_rand(0, 5); // Generate a random distance traveled between 0 and 5 Km

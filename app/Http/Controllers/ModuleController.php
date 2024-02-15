@@ -78,7 +78,7 @@ class ModuleController extends Controller
      */
     public function getModuleIssues()
     {
-        $modules = Module::where('actual_status', '!=', 'Operationaly')->get();
+        $modules = Module::where('actual_status', '!=', 'Operationally')->get();
 
         return response()->json($modules);
     }

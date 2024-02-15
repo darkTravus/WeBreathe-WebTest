@@ -22,7 +22,7 @@ class ModulesTableSeeder extends Seeder
             Module::create([
                 'name' => 'Module ' . ($i + 1),
                 'entity_id' => $randomEntity->id, // Use de ID of the randomed entity 
-                'actual_status' => 'Operationaly',
+                'actual_status' => 'Operationally',
                 'description' => 'Description for Module ' . ($i + 1),
             ]);
         }

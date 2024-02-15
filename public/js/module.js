@@ -9,7 +9,7 @@ $(document).ready(function() {
                 // Update module status on the page
                 var statusDotColor;
                 switch (response.status) {
-                    case 'Operationaly':
+                    case 'Operationally':
                         statusDotColor = 'green';
                         break;
                     case 'Repair':

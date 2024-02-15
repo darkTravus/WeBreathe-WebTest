@@ -28,11 +28,11 @@
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">{{ $module->name }}</h5>
-                            <p class="card-text">Entité : {{ $module->entity->name }}</p> <!-- Afficher le nom de l'entité -->
+                            <p class="card-text">Entité : {{ $module->entity->name }}</p>
                             <p class="card-text">Statut : 
                                 <span class="status-dot" style="background-color: 
                                     @switch($module->actual_status)
-                                        @case('Operationaly')
+                                        @case('Operationally')
                                             green;
                                             @break
                                         @case('Repair')
