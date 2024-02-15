@@ -69,4 +69,19 @@ class ModuleController extends Controller
     {
         //
     }
+    /**
+     * Get the status of the specified module.
+     */
+    public function getModuleStatus($moduleId)
+{
+    $module = Module::with('entity')->findOrFail($moduleId);
+
+    return response()->json([
+        'status' => $module->actual_status,
+        'entity' => $module->entity->name,
+        'description' => $module->description,
+        'updated_at' => $module->updated_at,
+    ]);
+}
+
 }
