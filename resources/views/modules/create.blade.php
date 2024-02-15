@@ -37,27 +37,28 @@
             </div>
         </div>
     </div>
-
-    <!-- Success message with fade-in/fade-out animation -->
-    <div id="successMessage" class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
-        @if (session('success'))
-            <div class="toast align-items-center text-white bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
-                <div class="d-flex">
-                    <div class="toast-body">
-                        {{ session('success') }}
-                    </div>
-                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
-                </div>
-            </div>
-        @endif
-    </div>
 @endsection
 
 @section('script')
     <script>
-        // Show success message with fade-in/fade-out animation
-        $(document).ready(function() {
-            $('.toast').toast('show');
-        });
+        // Success message 
+        var successMessage = "{{ session('success') }}";
+        if (successMessage != "") {
+            var notification = `
+            <div class="toast align-items-center text-white bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="toast-header">
+                    <strong class="me-auto">CaptionMe</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                  </div>
+                <div class="toast-body d-flex">
+                    <div class="toast-body">
+                        ${successMessage}
+                    </div>
+                </div>
+            </div>
+            `;
+
+            $('.toast-container').append(notification);
+        }
     </script>
 @endsection

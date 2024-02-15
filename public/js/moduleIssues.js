@@ -1,30 +1,26 @@
-// Function to show a success notification
-function showSuccessToast(message) {
+// Function to show a notification
+function showIssuesToast(message) {
     var successToast = `
-    <div id="message" class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
-        <div class="toast align-items-center text-white bg-danger border-0" role="alert" aria-live="assertive" aria-atomic="true">
-            <div class="d-flex">
-                <div class="toast-body">
-                    ${message}
-                </div>
-                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        <div class="toast align-items-center text-white bg-danger border-0" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
+            <div class="toast-header">
+                <strong class="me-auto">CaptionMe</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                ${message}
             </div>
         </div>
-    </div>
     `;
 
     // Add the notification to the page
-    $('body').append(successToast);
+    $('.toast-container').append(successToast);
 
-    // Show the toast with a fade-in animation
-    $('#message .toast').addClass('show');
-
-    // Add event listener to close button
-    $('#message .btn-close').on('click', function() {
-        // Remove the toast element from the page
-        $('#message').remove();
-    });
+    // Show all notifications
+    $('.toast').each(function () { 
+        $(this).toast('show')
+   });
 }
+
 // Function to detect module issues
 function detectModuleIssues() {
     $.ajax({
@@ -37,7 +33,7 @@ function detectModuleIssues() {
                 }).join(', ');
 
                 // Show a success notification with the names of the non-operational modules
-                showSuccessToast('Des dysfonctionnements ont été détectés. Veuillez vérifier les modules suivants : <br>' + moduleNames);
+                showIssuesToast('<h5>Dysfonctionnements détectés</h5><span>Veuillez vérifier les modules suivants : <br>' + moduleNames + '</span>');
             }
         },
         error: function(xhr, status, error) {
