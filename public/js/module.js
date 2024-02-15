@@ -28,7 +28,15 @@ $(document).ready(function() {
                 
                 $('#moduleEntity').text("Entité : " + response.entity);
                 $('#moduleDescription').text("Description : " + response.description);
-                $('#moduleUpdate').text("Mis à jour le : " + new Date(response.updated_at).toLocaleString('fr-FR'));
+
+                var updatedAt = new Date(response.updated_at).toISOString();
+
+                // Get the date to YYYY-MM-JJ HH:MM:SS
+                var formattedDate = updatedAt.slice(0, 10);
+                var formattedTime = updatedAt.slice(11, 19);
+                var formattedDateTime = formattedDate + ' ' + formattedTime;
+
+                $('#moduleUpdate').text("Mis à jour le : " + formattedDateTime);
             },
             error: function(xhr, status, error) {
                 console.error(error);

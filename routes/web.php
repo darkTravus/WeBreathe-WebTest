@@ -29,7 +29,7 @@ Route::get('/get-module-status/{moduleId}', [ModuleController::class, 'getModule
 Route::get('/get-module-history/{moduleId}', [HistoryModuleController::class, 'getHistoryWithFilters'])->name('modules.history.filters');
 
 // Route pour afficher le formulaire d'inscription
-Route::get('/modules/create', [ModuleController::class, 'create'])->name('modules.create');
+Route::get('/module/create', [ModuleController::class, 'create'])->name('modules.create');
 
 // Route pour soumettre les données du formulaire
-Route::post('/modules', [ModuleController::class, 'store'])->name('modules.store');
+Route::post('/module', [ModuleController::class, 'store'])->name('modules.store');
