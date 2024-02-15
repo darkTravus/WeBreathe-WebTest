@@ -10,6 +10,12 @@
 
 #### Inventaire des commandes Laravel
 
+0. **Installation des dépendances**
+   ```bash
+   composer install
+   ```
+   Avec ```composer```, assurez-vous de d'abord installer les dépendances.
+---
 1. **Création de la base de données**
    ```bash
    php artisan create-database
